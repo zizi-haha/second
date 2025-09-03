@@ -56,9 +56,8 @@ bool ListInsert(SeqList *L,int pos,ElemType e){
         return false;
     }
     //检查是否需要扩容
-    if(L->capacity>=L->length){
+    if(L->capacity<L->length){
         if(!ExpandList(L)){
-            printf("扩容失败，无法插入\n");
             return false;
         }
     }
@@ -91,12 +90,13 @@ bool ListDelete(SeqList *L,int pos,ElemType *e){
 //按值查找:查找e第一次出现的位置
 int LocataElem(SeqList *L,ElemType e){
     int i;
-    for(i==0;i<L->length;i++){
-        if(e==L->data[i]){
+    for(i=0;i<L->length;i++){
+    	
+        if(L->data[i]==e){
             return i;
         }
+		}
         return -1;
-    }
 }
 //按位查找:查找第pos个位置的元素
 bool GetElem(SeqList *L,int pos,ElemType *e){
@@ -118,7 +118,7 @@ bool ModifyElem(SeqList *L,int pos,ElemType e){
     return true;
 }
 //获取顺序表长度
-int GetLength(SequList *L){
+int GetLength(SeqList *L){
     return L->length;
 }
 //获取顺序表容量
@@ -149,8 +149,9 @@ void PrintList(SeqList *L){
         printf(", ");
 
   }
-  printf("]\n");
+  
 }
+printf("]\n");}
 //清空和销毁
 bool DestoryList(SeqList *L){
     if(L->data!=NULL){
@@ -159,7 +160,7 @@ bool DestoryList(SeqList *L){
     }
     L->length=0;
     L->capacity=0;
-    print("顺序表销毁成功\n");
+    printf("顺序表销毁成功\n");
     return true;
 }
 
@@ -172,18 +173,18 @@ int main(){
     InitList(&L);
     CreatList(&L,5);
     //增加内容
-    print("插入测试\n");
+    printf("插入测试\n");
     for(i=0;i<8;i++){
         ListInsert(&L,i,i*10);
-        PrintList(&L);
     }
+     PrintList(&L);
     //删除测试
-    print("删除测试\n");
-    ListDelet(&L,2,&temp);
+    printf("删除测试\n");
+    ListDelete(&L,2,&temp);
     printf("删除的元素是：%d\n",temp);
     PrintList(&L);
     //查找测试
-    print("查找测试\n");
+    printf("查找测试\n");
     int pos=LocataElem(&L,50);
     if(pos!=-1){
         printf("元素50的位置是：%d\n",pos);
@@ -191,11 +192,11 @@ int main(){
         printf("元素50不存在\n");
     }
     if(GetElem(&L,3,&temp)){
-        printf("位置3的元素是：%d\n",temp);
+        printf("位置7的元素是：%d\n",temp);
     }
 
     //修改测试
-    print("修改测试\n");
+    printf("修改测试\n");
     if(ModifyElem(&L,0,100)){
         PrintList(&L);
     }
@@ -207,4 +208,5 @@ int main(){
 
     //销毁
     DestoryList(&L);
-    return 0;}
+    return 0;
+    }

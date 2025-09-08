@@ -2,23 +2,23 @@
 #include<stdlib.h>
 #include<stdbool.h> 
 typedef struct{
-	int *data;//´¢´æÊı¾İ
-	int capicity;//×î´ó´¢´æÈİÁ¿ 
-	int length;//´¢´æµÄÔªËØ¸öÊı 
+	int *data;//å‚¨å­˜æ•°æ®
+	int capicity;//æœ€å¤§å‚¨å­˜å®¹é‡ 
+	int length;//å‚¨å­˜çš„å…ƒç´ ä¸ªæ•° 
 }SequList;
-//²åÈëÔªËØ
+//æ’å…¥å…ƒç´ 
 bool setInt(SequList *L,int e,int pos);
-//´´½¨ºÍ³õÊ¼»¯ 
+//åˆ›å»ºå’Œåˆå§‹åŒ– 
 bool CreatList(SequList *L,int e);
-//À©Èİ
+//æ‰©å®¹
 bool ExpandList(SequList *L);
-//É¾³ıÔªËØ:°´ÕÕÖµÉ¾³ı 
+//åˆ é™¤å…ƒç´ :æŒ‰ç…§å€¼åˆ é™¤ 
 bool deleteInt(SequList *L,int e);
-//É¾³ıÔªËØ£º°´Î»É¾³ı 
+//åˆ é™¤å…ƒç´ ï¼šæŒ‰ä½åˆ é™¤ 
 bool Delete(SequList *L,int pos,int *e);
-//²éÕÒÔªËØ£º°´Öµ²éÕÒ 
+//æŸ¥æ‰¾å…ƒç´ ï¼šæŒ‰å€¼æŸ¥æ‰¾ 
 bool findInt(SequList *L,int e);
-//²éÕÒÔªËØ£º°´Î»²éÕÒ
+//æŸ¥æ‰¾å…ƒç´ ï¼šæŒ‰ä½æŸ¥æ‰¾
 int  find(SequList *L,int pos);
 void printList(SequList *L);
 void freeList(SequList *L);
@@ -26,28 +26,28 @@ int main(){
 	SequList L;
 	int i=0;
 	int e;
-	printf("´´½¨²âÊÔ£º\n");
+	printf("åˆ›å»ºæµ‹è¯•ï¼š\n");
 	CreatList(&L,10);
 	for(i=0;i<8;i++){
 		L.data[i]=i*10;
 		L.length++;
 	}
 	printList(&L);
-	printf("²åÈë²âÊÔ£º\n");
+	printf("æ’å…¥æµ‹è¯•ï¼š\n");
 	setInt(&L,90,3);
 	printList(&L);
-	printf("É¾³ı²âÊÔ£º\n");
+	printf("åˆ é™¤æµ‹è¯•ï¼š\n");
 	Delete(&L,3,&e);
-	printf("É¾³ıµÄÔªËØÎª%d(90)\n",e);
+	printf("åˆ é™¤çš„å…ƒç´ ä¸º%d(90)\n",e);
 	deleteInt(&L,10);
 	printList(&L); 
 
-	printf("²éÕÒÔªËØ²âÊÔ£º\n");
+	printf("æŸ¥æ‰¾å…ƒç´ æµ‹è¯•ï¼š\n");
 	find(&L,2);
 	findInt(&L,30);
-	printf("À©Èİ²âÊÔ£º");
+	printf("æ‰©å®¹æµ‹è¯•ï¼š");
 	ExpandList(&L);
-	printf("\n²âÊÔ½áÊø");
+	printf("\næµ‹è¯•ç»“æŸ");
 	freeList(&L);
 	return 0;
 	
@@ -55,45 +55,45 @@ int main(){
 
 
 
-//´´½¨ºÍ³õÊ¼»¯ 
-bool CreatList(SequList *L,int e){//eÊÇÈİÁ¿ 
+//åˆ›å»ºå’Œåˆå§‹åŒ– 
+bool CreatList(SequList *L,int e){//eæ˜¯å®¹é‡ 
 	if(e<=0){
-		printf("ÈİÁ¿²»¿ÉÒÔĞ¡ÓÚµÈÓÚ0");
+		printf("å®¹é‡ä¸å¯ä»¥å°äºç­‰äº0");
 		return false;
 	}
 	L->capicity=e;
 	L->data=(int*)malloc(e*sizeof(int));
 	if(L->data==NULL){
-		printf("ÄÚ´æ·ÖÅäÊ§°Ü");
+		printf("å†…å­˜åˆ†é…å¤±è´¥");
 		return false;
 	}
 	L->length=0;
 	return true;
 }
-//²åÈëÔªËØ
+//æ’å…¥å…ƒç´ 
 bool setInt(SequList *L,int e,int pos){
-	//ÅĞ¶ÏÈİÁ¿ 
+	//åˆ¤æ–­å®¹é‡ 
 	int i=0;
 	if(L->capicity==L->length){
-		printf("ÈİÁ¿ÒÑÂú£¬ÇëÀ©Èİ");
+		printf("å®¹é‡å·²æ»¡ï¼Œè¯·æ‰©å®¹");
 		return false;
 	}
 	if(pos+1>=L->capicity){
-		printf("Î»ÖÃ²»ºÏÊÊ");
+		printf("ä½ç½®ä¸åˆé€‚");
 		return false;
 	}
-		//ÔªËØºóÒÆ
+		//å…ƒç´ åç§»
 	for(i=L->capicity-1;i>pos;i--){
 		L->data[i]=L->data[i-1];
 	} 
-	//²åÈëÔªËØ
+	//æ’å…¥å…ƒç´ 
 	L->data[pos]=e;
 	L->length++; 
 
-	printf("ÔªËØ%dÌí¼Ó³É¹¦",e);
+	printf("å…ƒç´ %dæ·»åŠ æˆåŠŸ",e);
 	return true;
 } 
-//É¾³ıÔªËØ:°´ÕÕÖµÉ¾³ı 
+//åˆ é™¤å…ƒç´ :æŒ‰ç…§å€¼åˆ é™¤ 
 bool deleteInt(SequList *L,int e){
 	int i=0;
 	int j=0;
@@ -105,34 +105,34 @@ bool deleteInt(SequList *L,int e){
 		}
 	}
 	if(j==0){
-		printf("Ã»ÓĞÕâ¸öÖµ");
+		printf("æ²¡æœ‰è¿™ä¸ªå€¼");
 		return false;
 	}
-	//½«Ê£ÏÂµÄÔªËØÇ¨ÒÆ 
+	//å°†å‰©ä¸‹çš„å…ƒç´ è¿ç§» 
 	for(;i<L->length-1;i++){
 		L->data[i]=L->data[i+1];
 	}
 	L->length--;
-	printf("ÔªËØÉ¾³ı³É¹¦");
+	printf("å…ƒç´ åˆ é™¤æˆåŠŸ");
 	return true;
 } 
-//É¾³ıÔªËØ£º°´Î»É¾³ı 
+//åˆ é™¤å…ƒç´ ï¼šæŒ‰ä½åˆ é™¤ 
 bool Delete(SequList *L,int pos,int *e){
 	int i=0;
 	if(pos>=L->length){
-		printf("Õâ¸öÎ»ÖÃ²»ºÏ·¨");
+		printf("è¿™ä¸ªä½ç½®ä¸åˆæ³•");
 		return false;
 	}
 	*e=L->data[pos];
-	//½«Ê£ÏÂµÄÔªËØÇ°ÒÆ
+	//å°†å‰©ä¸‹çš„å…ƒç´ å‰ç§»
 	for(i=pos;i<L->length-1;i++){
 		L->data[i]=L->data[i+1];
 	} 
 	L->length--;
-	printf("°´Î»É¾³ı³É¹¦");
+	printf("æŒ‰ä½åˆ é™¤æˆåŠŸ");
 	return true;
 }
-//²éÕÒÔªËØ£º°´Öµ²éÕÒ 
+//æŸ¥æ‰¾å…ƒç´ ï¼šæŒ‰å€¼æŸ¥æ‰¾ 
 bool findInt(SequList *L,int e){
 	int i;
 	int k=0;
@@ -143,42 +143,42 @@ bool findInt(SequList *L,int e){
 		}
 	}
 	if(k=0){
-		printf("Ã»ÓĞÕâ¸öÔªËØ");
+		printf("æ²¡æœ‰è¿™ä¸ªå…ƒç´ ");
 		return false;
 	}
 	else{
-		printf("ÔªËØ%dÔÚ%dÎ»ÖÃ",e,i);
+		printf("å…ƒç´ %dåœ¨%dä½ç½®",e,i);
 	}
 	return true;
 } 
-//²éÕÒÔªËØ£º°´Î»²éÕÒ
+//æŸ¥æ‰¾å…ƒç´ ï¼šæŒ‰ä½æŸ¥æ‰¾
 int  find(SequList *L,int pos){
-	//ÅĞ¶ÏÎ»ÖÃµÄºÏ·¨ĞÔ
+	//åˆ¤æ–­ä½ç½®çš„åˆæ³•æ€§
 	 if(pos>=L->length){
-		printf("Õâ¸öÎ»ÖÃ²»ºÏ·¨");
+		printf("è¿™ä¸ªä½ç½®ä¸åˆæ³•");
 		return -1;
 	}
 	return L->data[pos];
 } 
-//À©Èİ
+//æ‰©å®¹
 bool ExpandList(SequList *L){
-	printf("¿ªÊ¼À©Èİ£¬µ±Ç°ÈİÁ¿Îª£º%d£¬µ±Ç°³¤¶ÈÎª£º%d\n",L->capicity,L->length);
+	printf("å¼€å§‹æ‰©å®¹ï¼Œå½“å‰å®¹é‡ä¸ºï¼š%dï¼Œå½“å‰é•¿åº¦ä¸ºï¼š%d\n",L->capicity,L->length);
 	if(L->capicity<=0){
-		printf("ÎŞĞ§\n");
+		printf("æ— æ•ˆ\n");
 		return false;
 	}
 	int newc=2*L->capicity; 
 	int *newdata=(int *)realloc(L->data,newc*sizeof(int));
 	if(newdata==NULL){
-		printf("ÄÚ´æ·ÖÅäÊ§°Ü\n");
+		printf("å†…å­˜åˆ†é…å¤±è´¥\n");
 		return false;
 	}
 	L->data=newdata;
 	L->capicity=newc;
-	printf("ÄÚ´æÀ©Ôö³É¹¦£¬ĞÂµÄÄÚ´æÎª%d",L->capicity);
+	printf("å†…å­˜æ‰©å¢æˆåŠŸï¼Œæ–°çš„å†…å­˜ä¸º%d",L->capicity);
 	return true;
 	}
-//´òÓ¡
+//æ‰“å°
 void printList(SequList *L){
 	int i=0;
 	printf("[ ");

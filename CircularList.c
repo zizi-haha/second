@@ -4,18 +4,18 @@ typedef struct Node{
 	int data;
 	struct Node* next;
 }Node;
-//´´½¨
+//åˆ›å»º
 Node* creatNode(int data){
 	Node* newNode=(Node*)malloc(sizeof(Node));
 	if(newNode==NULL){
-		printf("ÄÚ´æ·ÖÅäÊ§°Ü");
+		printf("å†…å­˜åˆ†é…å¤±è´¥");
 		exit(1);
 	}
 	newNode->data=data;
 	newNode->next=NULL;
 	return newNode;
 } 
-//ÔÚÑ­»·ÁĞ±íÎ²²¿²åÈë½Úµã
+//åœ¨å¾ªç¯åˆ—è¡¨å°¾éƒ¨æ’å…¥èŠ‚ç‚¹
 void insertAtEnd(Node** head,int data){
 	Node* newNode=creatNode(data);
 	Node* temp=*head;
@@ -31,7 +31,7 @@ void insertAtEnd(Node** head,int data){
 		newNode->next=*head;
 	}
 } 
-//ÔÙÑ­»·ÁĞ±í¿ªÍ·²åÈë
+//å†å¾ªç¯åˆ—è¡¨å¼€å¤´æ’å…¥
 void insertAtHead(Node** head,int data){
 	Node* newNode=creatNode(data);
 	Node* temp=*head;
@@ -48,11 +48,11 @@ void insertAtHead(Node** head,int data){
 		 *head=newNode;
 	}
 } 
-//É¾³ıÍ·½Úµã
+//åˆ é™¤å¤´èŠ‚ç‚¹
 void deleteAtHead(Node** head){
 	Node* temp=*head;
 	if(*head==NULL){
-		printf("ÁĞ±íÎª¿Õ\n");
+		printf("åˆ—è¡¨ä¸ºç©º\n");
 		return;
 	}
 	else{
@@ -64,11 +64,11 @@ void deleteAtHead(Node** head){
 	}
 	free(temp);
 } 
-//É¾³ı½Úµã
+//åˆ é™¤èŠ‚ç‚¹
 
 void deleteNode(Node** head,int data){
 	if(*head==NULL){
-		printf("ÁĞ±íÎª¿Õ\n");
+		printf("åˆ—è¡¨ä¸ºç©º\n");
 		return;
 	}
 	Node* current=*head,*prev=NULL;
@@ -83,14 +83,14 @@ void deleteNode(Node** head,int data){
 		prev->next=current->next;
 		free(current);
 	}else{
-		printf("Î´ÕÒµ½½Úµã%d\n",data);
+		printf("æœªæ‰¾åˆ°èŠ‚ç‚¹%d\n",data);
 	}
 	
 } 
-//´òÓ¡
+//æ‰“å°
 void displayList(Node* head){
 	if(head==NULL){
-		printf("Á´±íÎª¿Õ\n");
+		printf("é“¾è¡¨ä¸ºç©º\n");
 		return;
 	}
 	Node* current=head;
@@ -99,10 +99,10 @@ void displayList(Node* head){
 			printf("%d ->",current->data);
 			current=current->next;
 		}while(current!=head);
-		printf("Í·½Úµã\n");
+		printf("å¤´èŠ‚ç‚¹\n");
 	
 } 
-//ÊÍ·Å
+//é‡Šæ”¾
 void freeList(Node** head){
 	if(*head==NULL)return;
 	Node* current=*head;
@@ -114,21 +114,21 @@ void freeList(Node** head){
 	}while(current!=*head);
 	*head=NULL;
 } 
-//²âÊÔ
+//æµ‹è¯•
 int main(){
 	Node* head=NULL;
-	//²åÈë
+	//æ’å…¥
 	insertAtEnd(&head,10);
 	insertAtEnd(&head,20);
 	insertAtEnd(&head,30);
 	insertAtHead(&head,5);
 	displayList(head);
-	printf("É¾³ı\n");
+	printf("åˆ é™¤\n");
 	deleteNode(&head,20);
 	displayList(head);
 	freeList(&head);
 	if(!head){
-		printf("Çå¿ÕÁË\n");
+		printf("æ¸…ç©ºäº†\n");
 		
 	} 
 	return 0;

@@ -10,25 +10,25 @@ typedef struct{
 	Node* tail;
 	int size;
 }DoublyLinkedList;
-//´´½¨ĞÂ½Úµã
+//åˆ›å»ºæ–°èŠ‚ç‚¹
 Node* creatNode(int data){
 	Node* newNode=(Node*)malloc(sizeof(Node));
 	if(!newNode){
-		printf("ÄÚ´æ·ÖÅäÊ§°Ü");
-		exit(1);//ÈÃÕû¸ö³ÌĞòÖÕÖ¹ 
+		printf("å†…å­˜åˆ†é…å¤±è´¥");
+		exit(1);//è®©æ•´ä¸ªç¨‹åºç»ˆæ­¢ 
 	}
 	newNode->data=data;
 	newNode->next=NULL;
 	newNode->prev=NULL;
 	return newNode;
 } 
-//³õÊ¼»¯Ë«Á´±í
+//åˆå§‹åŒ–åŒé“¾è¡¨
 void  initList(DoublyLinkedList* list){
 	list->head=NULL;
 	list->size=0;
 	list->tail=NULL;
 } 
-//ÔÚÁ´±íÍ·²¿²åÈë
+//åœ¨é“¾è¡¨å¤´éƒ¨æ’å…¥
 void insertAtHead(DoublyLinkedList* list,int data){
 	Node* newnode=creatNode(data);
 	if(list->head==NULL){
@@ -41,7 +41,7 @@ void insertAtHead(DoublyLinkedList* list,int data){
 	}
 	list->size++;
 } 
-//ÔÚÁ´±íÎ²²¿²åÈë
+//åœ¨é“¾è¡¨å°¾éƒ¨æ’å…¥
 void insertAtTail(DoublyLinkedList* list,int data){
 	Node* newnode=creatNode(data);
 	if(list->head==NULL){
@@ -55,11 +55,11 @@ void insertAtTail(DoublyLinkedList* list,int data){
 	}
 	list->size++;
 } 
-//ÔÚÖ¸¶¨Î»ÖÃ²åÈë
+//åœ¨æŒ‡å®šä½ç½®æ’å…¥
 void insertAtPosition(DoublyLinkedList* list,int data,int pos){
 	int i=0;
 	if(pos>list->size||pos<0){
-		printf("Î»ÖÃÎŞĞ§\n");
+		printf("ä½ç½®æ— æ•ˆ\n");
 		return;
 	}
 	if(pos==0){
@@ -82,10 +82,10 @@ void insertAtPosition(DoublyLinkedList* list,int data,int pos){
 	}
 	list->size++;
 } 
-//É¾³ıÍ·²¿½Úµã
+//åˆ é™¤å¤´éƒ¨èŠ‚ç‚¹
 void deleteAtHead(DoublyLinkedList* list){
 	if(list->size==0){
-		printf("¸ÃÁ´±íÎª¿Õ");
+		printf("è¯¥é“¾è¡¨ä¸ºç©º");
 		return;
 	}
 	Node* temp=list->head;
@@ -100,10 +100,10 @@ void deleteAtHead(DoublyLinkedList* list){
 	
 	
 } 
-//É¾³ıÎ²²¿½Úµã
+//åˆ é™¤å°¾éƒ¨èŠ‚ç‚¹
 void deleteAtTail(DoublyLinkedList* list){
 	if(list->size==0){
-		printf("¸ÃÁ´±íÎª¿Õ");
+		printf("è¯¥é“¾è¡¨ä¸ºç©º");
 		return;
 	}
 	Node* temp=list->tail;
@@ -116,12 +116,12 @@ void deleteAtTail(DoublyLinkedList* list){
 	free(temp);
 	list->size--;
 } 
-//É¾³ıÖ¸¶¨Î»ÖÃ½Úµã
+//åˆ é™¤æŒ‡å®šä½ç½®èŠ‚ç‚¹
 void deletAtPosition(DoublyLinkedList* list,int pos){
 	int i=0;
 	Node* current=list->head;
 	if(pos>list->size-1||pos<0){
-		printf("Î»ÖÃ²»ºÏ·¨");
+		printf("ä½ç½®ä¸åˆæ³•");
 		return;
 	}
 	if(pos==0){
@@ -144,12 +144,12 @@ void deletAtPosition(DoublyLinkedList* list,int pos){
 		list->size--;
 	}
 } 
-//²éÕÒ
+//æŸ¥æ‰¾
 int search(DoublyLinkedList* list,int data){
 	int i=0;
 	Node* current=list->head;
 	if(list->size==0){
-		printf("¸ÃÁ´±íÎª¿Õ\n");
+		printf("è¯¥é“¾è¡¨ä¸ºç©º\n");
 		return -1;
 	}
 	for(i=0;i<list->size;i++){
@@ -159,10 +159,10 @@ int search(DoublyLinkedList* list,int data){
 		current=current->next;
 	
 	}
-	printf("Î´ÕÒµ½\n");
+	printf("æœªæ‰¾åˆ°\n");
 	return -1;
 } 
-//´òÓ¡
+//æ‰“å°
 void printList(DoublyLinkedList* list){
 	int i=0;
 	Node* current=list->head;
@@ -178,7 +178,7 @@ int getSize(DoublyLinkedList* list){
 int isEmpty(DoublyLinkedList* list){
 	return list->size==0;
 }
-//Çå¿ÕÁ´±í
+//æ¸…ç©ºé“¾è¡¨
 void freeLinkdeList(DoublyLinkedList* list){
 	Node* current=list->head;
 	Node* temp=NULL;
@@ -195,20 +195,20 @@ void freeLinkdeList(DoublyLinkedList* list){
 int main(){
 	DoublyLinkedList list;
 	initList(&list);
-	//²åÈë
+	//æ’å…¥
 	insertAtHead(&list,10);
 	insertAtHead(&list,20);
 	insertAtTail(&list,30);
 	insertAtTail(&list,40);
 	insertAtPosition(&list,50,2);
-	printf("Á´±í²Ù×÷ÑİÊ¾\n");
+	printf("é“¾è¡¨æ“ä½œæ¼”ç¤º\n");
 	printList(&list);
-	printf("Á´±í³¤¶È£º%d \n",getSize(&list));
-	//ËÑË÷
+	printf("é“¾è¡¨é•¿åº¦ï¼š%d \n",getSize(&list));
+	//æœç´¢
 	int searchdata=30;
 	int pos=search(&list,30);
-	printf("Êı¾İ%d ÔÚ%dÎ»ÖÃÉÏ\n",searchdata,pos);
-	//É¾³ı²âÊÔ
+	printf("æ•°æ®%d åœ¨%dä½ç½®ä¸Š\n",searchdata,pos);
+	//åˆ é™¤æµ‹è¯•
 	deleteAtTail(&list);
 	deleteAtHead(&list);
 	deletAtPosition(&list,2);
